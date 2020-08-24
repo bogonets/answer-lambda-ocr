@@ -1,0 +1,57 @@
+{
+    "info": {
+        "name": "easyocr_recognize",
+        "script_path": "easyocr_recognize.py",
+        "version": "1.0.0",
+        "category": "ocr",
+        "keywords": ["ocr", "easyocr"],
+        "homepage": "https://answer.bogonets.com/",
+        "bugs": "https://answer.bogonets.com/",
+        "license": "Bogonet License",
+        "author": "wooruang",
+        "dependencies": [
+            {"type": "pip", "src": "numpy"},
+            {"type": "pip", "src": "easyocr"}
+        ],
+        "engines": ">=1.0.2",
+        "environment": {
+            "type": "pyenv",
+            "name": "easyocr"
+        },
+        "titles": {
+            "en": "EasyOCR Recognition",
+            "ko": "EasyOCR 인식"
+        },
+        "descriptions": {
+            "en": "Recognize a image to text.",
+            "ko": "이미지 안의 텍스트를 인식한다."
+        },
+        "documentation_mime": "text",
+        "documentations": {},
+        "meta": {}
+    },
+    "controls": {
+        "input": "image",
+        "output": ["draw_image", "text_list", "text_locations"]
+    },
+    "props": [
+        {
+            "rule": "read_and_write",
+            "name": "select_lang",
+            "default_value": "English",
+            "type": "list",
+            "required": true,
+            "valid": {
+                "list": "Afrikaans;Arabic;Azerbaijani;Belarusian;Bulgarian;Bosnian;Simplified Chinese;Traditional Chinese;Czech;Welsh;Danish;German;English;Spanish;Estonian;Persian (Farsi);French;Irish;Hindi;Croatian;Hungarian;Indonesian;Icelandic;Italian;Korean;Kurdish;Latin;Latvian;Maori;Mongolian;Marathi;Malay;Maltese;Nepali;Dutch;Norwegian;Occitan;Polish;Portuguese;Romanian;Serbian (cyrillic);Serbian (latin);Slovak (need revisit);Slovenian;Albanian;Swedish;Swahili;Tamil;Thai;Tagalog;Turkish;Uyghur;Ukranian;Urdu;Uzbek;Vietnamese (need revisit)"
+            },
+            "title": {
+                "en": "Select Languages",
+                "ko": "언어 선택"
+            },
+            "help": {
+                "en": "",
+                "ko": ""
+            }
+        }
+    ]
+}
