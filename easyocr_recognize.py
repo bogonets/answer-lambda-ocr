@@ -126,13 +126,13 @@ reader = None
 
 
 def on_set(k, v):
-    if k == 'select_langs'
+    if k == 'select_langs':
         global select_langs
         select_langs = [ LANG_NAME_TO_FLAG[x] for x in v.split(',') ]
 
 
 def on_get(k):
-    if k == 'select_langs'
+    if k == 'select_langs':
         return ','.join([ LANG_FLAG_TO_NAME[x] for x in select_langs ])
 
 
