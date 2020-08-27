@@ -1,4 +1,6 @@
 import easyocr
+import cv2
+import numpy as np
 
 # pip install easyocr
 
@@ -12,7 +14,7 @@ def recognize(reader, image):
 
 
 def draw_text(image, text_info):
-    img = image.clone()
+    img = image.copy()
     image_h, image_w, _ = img.shape
     for item in text_info:
         bbox = item[0]

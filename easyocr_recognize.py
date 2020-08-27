@@ -1,5 +1,18 @@
 import numpy as np
 import easyocr_tools
+import sys
+import time
+
+
+import ssl
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    # Legacy Python that doesn't verify HTTPS certificates by default
+    pass
+else:
+    # Handle target environment that doesn't support HTTPS verification
+    ssl._create_default_https_context = _create_unverified_https_context
 
 
 LANG_AFRIKAANS_NAME          = 'Afrikaans'
@@ -26,9 +39,11 @@ LANG_HUNGARIAN_NAME          = 'Hungarian'
 LANG_INDONESIAN_NAME         = 'Indonesian'
 LANG_ICELANDIC_NAME          = 'Icelandic'
 LANG_ITALIAN_NAME            = 'Italian'
+LANG_JAPANESE_NAME           = 'Japanese'
 LANG_KOREAN_NAME             = 'Korean'
 LANG_KURDISH_NAME            = 'Kurdish'
 LANG_LATIN_NAME              = 'Latin'
+LANG_LITHUANIAN_NAME         = 'Lithuanian'
 LANG_LATVIAN_NAME            = 'Latvian'
 LANG_MAORI_NAME              = 'Maori'
 LANG_MONGOLIAN_NAME          = 'Mongolian'
@@ -120,16 +135,19 @@ LANG_NAME_TO_FLAG = {
 LANG_FLAG_TO_NAME = {v: k for k, v in LANG_NAME_TO_FLAG.items()}
 
 
-select_langs = [LANG_FLAG_TO_NAME[LANG_KOREAN_NAME]]
+select_langs = [LANG_NAME_TO_FLAG[LANG_ENGLISH_NAME]]
 
 reader = None
+
+def print_out(text):
+    sys.stdout.write(text)
+    sys.stdout.flush()
 
 
 def on_set(k, v):
     if k == 'select_langs':
         global select_langs
         select_langs = [ LANG_NAME_TO_FLAG[x] for x in v.split(',') ]
-
 
 def on_get(k):
     if k == 'select_langs':
@@ -138,7 +156,8 @@ def on_get(k):
 
 def on_init():
     global reader
-    reader = easyocr_tools.init_recognizer([select_lang])
+    reader = easyocr_tools.init_recognizer(select_langs)
+    return True
 
 
 def on_run(image):

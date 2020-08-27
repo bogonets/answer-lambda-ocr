@@ -11,6 +11,9 @@
         "author": "wooruang",
         "dependencies": [
             {"type": "pip", "src": "numpy"},
+            {"type": "pip", "src": "torch==1.5.0"},
+            {"type": "pip", "src": "torchvision==0.6.0"},
+            {"type": "pip", "src": "opencv-python"},
             {"type": "pip", "src": "easyocr"}
         ],
         "engines": ">=1.0.2",
